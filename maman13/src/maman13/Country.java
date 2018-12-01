@@ -2,8 +2,8 @@ package maman13;
 /**
  * 
  * @author Eliyah Mashiah
- *@version 26.11.2018
- *hello team i love memes
+ *@version 01.12.2018
+ *
  */
 public class Country {
 	
@@ -63,6 +63,8 @@ public class Country {
 		}
 		return totalResidents;
 	}
+	
+	
 	public double longestDistance()
 	{
 		double maxDistance=0;
@@ -85,21 +87,18 @@ public class Country {
 	}
 	public String citiesNorthOf(String cityName)
 	{
-		int indexOfCity=0;
-		String s="";
-		while(cityName!=_cities[indexOfCity].getCityName()&& indexOfCity<_noOfCities)
-		{
-			indexOfCity++;
-		}
-		
-		if(indexOfCity==_noOfCities-1 && _cities[indexOfCity].getCityName()!=cityName)
+		int indexOfCity=searchArray(_cities, cityName);
+		String s="the cities north of "+cityName+" are:\n\n";
+		if(indexOfCity==-1)
 		{
 			return "There is no city with name "+cityName;
 		}
+		
 		else
 		{
-		Point cityCenter=_cities[indexOfCity].getCityCenter();
-		for (int i=0; i<_noOfCities;i++)
+		Point cityCenter=new Point(_cities[indexOfCity].getCityCenter());
+		
+		for (int i=0; i<_noOfCities; i++)
 		{
 			if(_cities[i].getCityCenter().isAbove(cityCenter))
 			{
@@ -108,6 +107,19 @@ public class Country {
 		}
 		return s;
 	
+		}		
+	}
+	
+	
+	private int searchArray(City [] cities, String cityName)
+	{
+		for (int i=0;i<_noOfCities;i++)
+		{
+			if(cityName==cities[i].getCityName())
+			{
+				return i;
+			}
 		}
+		return -1;
 	}
 }//end class

@@ -38,8 +38,8 @@ public class Tester {
         
         final int CITIES = 100;
         
-        country1.addCity("JLM", 1, 30, 25, 35, 850, 3);
-        country1.addCity("TLV", 3, 70, 65, 75, 640, 6);
+        country1.addCity("JLM", 20, 30, 25, 35, 850, 3);
+        country1.addCity("TLV", 60, 5, 65, 75, 640, 6);
         country1.addCity("BSB", 10, 20, 15, 25, 920, 8);
 
         
@@ -56,7 +56,7 @@ public class Tester {
         System.out.println();  
         
         
-        String northOf = country1.citiesNorthOf("BSB");
+        String northOf = country1.citiesNorthOf("hello team");
         System.out.println(northOf);
         System.out.println();                 
         
