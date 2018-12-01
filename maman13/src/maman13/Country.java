@@ -85,6 +85,8 @@ public class Country {
 			return maxDistance;
 		}
 	}
+	
+	
 	public String citiesNorthOf(String cityName)
 	{
 		int indexOfCity=searchArray(_cities, cityName);
@@ -108,6 +110,28 @@ public class Country {
 		return s;
 	
 		}		
+	}
+	
+	public City southernmostCity()
+	{
+		if (_noOfCities==0)
+		{
+			return null;
+		}
+		else
+		{
+			Point southernmostCity=new Point (_cities[0].getCityCenter());
+			int indexOfCity=0;
+			for (int i=1; i<_noOfCities;i++)
+			{
+				if (_cities[i].getCityCenter().isUnder(southernmostCity))
+				{
+				southernmostCity=new Point (_cities[i].getCityCenter());
+				indexOfCity=i;
+				}
+			}
+			return _cities[indexOfCity];
+		}
 	}
 	
 	
