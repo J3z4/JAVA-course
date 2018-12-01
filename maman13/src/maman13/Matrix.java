@@ -65,7 +65,7 @@ public class Matrix {
 		return s;//returns the string representation of the matrix
 	}
 	
-	public Matrix flipHorizontally()
+	public Matrix flipHorizontal()
 	{
 		int [] [] matrix= copyMatrix();
 		int temp;
@@ -82,7 +82,9 @@ public class Matrix {
         return new Matrix(matrix);
 
 	}
-	public Matrix flipVertically()
+	
+	
+	public Matrix flipVertical()
 	{
 		int [] [] matrix= copyMatrix();
 		int temp;
