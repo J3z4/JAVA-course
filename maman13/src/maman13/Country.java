@@ -1,7 +1,7 @@
 package maman13;
 /**
  * 
- * @author Eliyah Mashiah
+ * @author Eliyahu Mashiah
  *@version 01.12.2018
  *
  */
@@ -130,7 +130,7 @@ public class Country {
 				indexOfCity=i;
 				}
 			}
-			return _cities[indexOfCity];
+			return new City(_cities[indexOfCity]);
 		}
 	}
 	

@@ -12,11 +12,11 @@ public class Tester {
         System.out.println(matrix1);
         
         matrix1= new Matrix(intArray);
-        Matrix horizontalMatrix= matrix1.flipHorizontally();
+        Matrix horizontalMatrix= matrix1.flipHorizontal();
         System.out.println(horizontalMatrix);
         
         matrix1= new Matrix(intArray);
-        Matrix verticalMatrix= matrix1.flipVertically();
+        Matrix verticalMatrix= matrix1.flipVertical();
         System.out.println(verticalMatrix);
     
         matrix1= new Matrix(intArray);

@@ -1,7 +1,7 @@
 package maman13;
 /**
  * 
- * @author Eliyah Mashiah
+ * @author Eliyahu Mashiah
  *@version 26.11.2018 
  */
 public class Matrix {
