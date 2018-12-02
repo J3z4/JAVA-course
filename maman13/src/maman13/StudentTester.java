@@ -1,4 +1,4 @@
-
+package maman13;
 /**
  * Student Tester for Maman 13
  */
@@ -28,8 +28,8 @@ public class StudentTester
         System.out.println(countryName);
         System.out.println();  
         
-        int howManyCities= country1.getNumOfCities();
-        System.out.println(howManyCities);
+    //    int howManyCities= country1.getNumOfCities();
+     //   System.out.println(howManyCities);
         System.out.println();  
         
         String northOf = country1.citiesNorthOf("BSB");
@@ -50,11 +50,11 @@ public class StudentTester
         
         City[] citiesCopy = country1.getCities(); 
         for(int y=0; y<=2; y++)    
-            System.out.println(citiesCopy[y]);
+          System.out.println(citiesCopy[y]);
         System.out.println();    
-        
+      
         City uniCity = country1.unifyCities("JLM", "TLV");
-        System.out.println(country1);
+       System.out.println(country1);
         
         //---------------Matrix-----------------------
         
@@ -82,6 +82,20 @@ public class StudentTester
         matrix1= new Matrix(intArray);
         Matrix counterClockwiseMatrix= matrix1.rotateCounterClockwise();
         System.out.println(counterClockwiseMatrix);
+        
+        
+        
+        int [] arr = {1,2,3};
+        int [] arr1=new int [3];
+        for (int i=0; i<arr1.length; i++)
+        {
+        	arr1[i]=arr[i];
+        }
+        System.out.println(arr[0]);
+        System.out.println(arr1[0]);
+        arr[0]=5;
+        System.out.println(arr[0]);
+        System.out.println(arr1[0]);
         
     }
 }
