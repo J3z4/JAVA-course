@@ -2,7 +2,7 @@ package maman13;
 /**
  *  This class Represents information about a Country 
  * @author Eliyahu Mashiah
- *@version 01.12.2018
+ *@version 11.12.2018
  *
  */
 public class Country {
