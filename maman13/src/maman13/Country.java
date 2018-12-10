@@ -181,9 +181,9 @@ public class Country {
 	}
 	
 	/**
-	 * 
-	 * @param city1
-	 * @param city2
+	 * unifies 2 cities into one city. the name of the unified city is city1-city2, the city center is the middle point of both city centers, the central station is the western station of the two, and the number of residents and neighborhoods is the sum of both cities. 
+	 * @param city1 the name of the first city.
+	 * @param city2 the name of the second city.
 	 * @return
 	 */
 	public City unifyCities(String city1,String city2)
@@ -230,7 +230,21 @@ public class Country {
 	
 	
 /**
- * 
+ * Returns a string representation of Country in the format
+ *Cities of Israel:
+ *
+ *City Name: TelAviv
+ *City Center: (10.0,10.0)
+ *Central Station: (8.0,8.0)
+ *Number of Residents: 10000
+ *Number of Neighborhoods: 5
+ *
+ *City Name: Jerusalem
+ *City Center: (3.0,20.0)
+ *Central Station: (4.0,18.0)
+ *Number of Residents: 20000
+ *Number of Neighborhoods: 8
+ * @return A String representation of this country
  */
 	public String toString()
 	{
@@ -241,8 +255,8 @@ public class Country {
 		}
 			return s;
 	}
-
-	private int searchArray(String cityName)
+	
+	private int searchArray(String cityName)//a method which searches the _cities array for a specific city and returns the index of given city. 
 	{
 		for (int i=0;i<_noOfCities;i++)
 		{
