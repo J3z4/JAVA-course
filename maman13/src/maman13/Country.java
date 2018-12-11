@@ -29,7 +29,7 @@ public class Country {
 	}
 	
 	/**
-	 * 
+	 * adds a city to the cities array if there are less than 1000 cities and returns true, otherwise returns false
 	 * @param cityName The name of the city
 	 * @param cityCenterX The X coordinate of the city's center
 	 * @param cityCenterY The Y coordinate of the city's center
@@ -41,11 +41,11 @@ public class Country {
 	 */
 	public boolean addCity(String cityName, double cityCenterX, double cityCenterY, double centralStationX, double centralStationY,long numOfResidents,int noOfNeighborhoods)
 	{
-		if(_noOfCities<MAX_NUM_CITIES)
+		if(_noOfCities<MAX_NUM_CITIES)//checks if the number of cities that are currently in the array is smaller than the max number of cities
 		{
 			City city=new City(cityName,cityCenterX,cityCenterY,centralStationX,centralStationY,numOfResidents,noOfNeighborhoods);
 			_cities[_noOfCities]=city;
-			_noOfCities++;
+			_noOfCities++;//adds 1 to the number of cities that are currently in the array 
 			return true;	
 		}
 		else 
@@ -81,12 +81,12 @@ public class Country {
 		}
 		else
 		{
-			for(int i=0; i<_noOfCities;i++)
+			for(int i=0; i<_noOfCities;i++)//
 			{
 				for (int j=i+1; j<_noOfCities; j++)
 				{
-					if(maxDistance<(_cities[i].getCityCenter()).distance(_cities[j].getCityCenter()))
-						maxDistance=(_cities[i].getCityCenter()).distance(_cities[j].getCityCenter());
+					if(maxDistance<(_cities[i].getCityCenter()).distance(_cities[j].getCityCenter()))//checks if the distance from 2 city centers, the city center  in index [i] to the city in index [j] is bigger than the current max distance
+						maxDistance=(_cities[i].getCityCenter()).distance(_cities[j].getCityCenter());//sets the value of the new distance. 
 				}
 			}
 			return maxDistance;
@@ -133,14 +133,14 @@ public class Country {
 	 */
 	public City southernmostCity()
 	{
-		if (_noOfCities==0)
+		if (_noOfCities==0)//checks if there are no cities in the country if true returns null 
 		{
 			return null;
 		}
 		City southernmostCity=new City (_cities[0]);
 		for (int i=1; i<_noOfCities;i++)
 		{
-			if (_cities[i].getCityCenter().isUnder(southernmostCity.getCityCenter()))
+			if (_cities[i].getCityCenter().isUnder(southernmostCity.getCityCenter()))//checks if the city in the i index of the array is southern to the current southern most city. the southern most city becomes the city in the i index
 			{
 			southernmostCity=_cities[i];
 			}
@@ -167,7 +167,7 @@ public class Country {
 	}
 	
 	/**
-	 * returns an array of all the cities in the country 
+	 * Creates an array the size of the country's cities
 	 * @return an array of the cities in the country
 	 */
 	public City [] getCities()
@@ -175,7 +175,7 @@ public class Country {
 		City [] city= new City[_noOfCities];
 		for (int i=0; i<city.length; i++)
 		{
-			city[i]=new City(_cities[i]);
+			city[i]=new City(_cities[i]);//copies all the cities from the original array to the new array
 		}
 		return city;
 	}
@@ -189,24 +189,24 @@ public class Country {
 	public City unifyCities(String city1,String city2)
 	{
 		Point centralStation;
-		int indexCity1=searchArray(city1);
-		int indexCity2=searchArray(city2);
-		double cityCenterX=( _cities[indexCity1].getCityCenter().getX()+_cities[indexCity2].getCityCenter().getX())/2;
-		double cityCenterY=( _cities[indexCity1].getCityCenter().getY()+_cities[indexCity2].getCityCenter().getY())/2;
-		long numOfResidents=_cities[indexCity1].getNumOfResidents()+_cities[indexCity2].getNumOfResidents();
+		int indexCity1=searchArray(city1);//searches the index of the first city in the _cities array
+		int indexCity2=searchArray(city2);//searches the index of the second city in the _cities array
+		double cityCenterX=( _cities[indexCity1].getCityCenter().getX()+_cities[indexCity2].getCityCenter().getX())/2;//sets the X coordinate of the new city center to be in the middle of the existing city centers 
+		double cityCenterY=( _cities[indexCity1].getCityCenter().getY()+_cities[indexCity2].getCityCenter().getY())/2;//sets the Y coordinate of the new city center to be in the middle of the existing city centers
+		long numOfResidents=_cities[indexCity1].getNumOfResidents()+_cities[indexCity2].getNumOfResidents();//sets the number of residents to be the total number of residents of both cities
 		int numOfNeighborhoods=_cities[indexCity1].getNoOfNeighborhoods()+_cities[indexCity2].getNoOfNeighborhoods();//sums the total number of neighborhoods 
 		
 		if(_cities[indexCity1].getCentralStation().isLeft(_cities[indexCity2].getCentralStation()))//Checking which central station is to the west
 		{
-			centralStation=new Point(_cities[indexCity1].getCentralStation());
+			centralStation=new Point(_cities[indexCity1].getCentralStation());//sets the central station of the unified city to be the the central station of the first city. 
 		}
 		
 		else
 		{
-			centralStation=new Point(_cities[indexCity2].getCentralStation());
+			centralStation=new Point(_cities[indexCity2].getCentralStation());//sets the central station of the unified city to be the the central station of the second city. 
 		}
 		
-		City unifiedCity=new City((city1+"-"+city2),cityCenterX,cityCenterY,centralStation.getX(),centralStation.getY(),numOfResidents,numOfNeighborhoods);
+		City unifiedCity=new City((city1+"-"+city2),cityCenterX,cityCenterY,centralStation.getX(),centralStation.getY(),numOfResidents,numOfNeighborhoods);//creating the unified city
 		
 		if( _cities[indexCity2].getNumOfResidents()<_cities[indexCity1].getNumOfResidents() || _cities[indexCity1].getNumOfResidents()==_cities[indexCity2].getNumOfResidents())
 	    /*checks if there are less residents in the second city than the first city, or if there is an equal number of residents in both cities.
@@ -218,11 +218,11 @@ public class Country {
 			_cities[indexCity1]=unifiedCity;
 		}
 		
-		else// deletes the first city and inserts the unified city in the index of the second city
+		else// inserts the last city in the index of the first city, deletes the last city and inserts the unified city in the index of the second city
 		{
-			_cities[indexCity1]=new City(_cities[_noOfCities-1]);
-			_cities[_noOfCities-1]=null;
-			_cities[indexCity2]=unifiedCity;
+			_cities[indexCity1]=new City(_cities[_noOfCities-1]);//inserts the last the city in the index of the first city
+			_cities[_noOfCities-1]=null;//sets the last city in the array to null 
+			_cities[indexCity2]=unifiedCity;//inserts the unified city in the second city place
 		}
 		_noOfCities--;
 		return new City(unifiedCity);
@@ -256,7 +256,7 @@ public class Country {
 			return s;
 	}
 	
-	private int searchArray(String cityName)//a method which searches the _cities array for a specific city and returns the index of given city. 
+	private int searchArray(String cityName)//a method which searches the _cities array for a specific city and returns the index of given city.if the city wasn't found it returns -1 
 	{
 		for (int i=0;i<_noOfCities;i++)
 		{

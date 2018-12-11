@@ -1,15 +1,15 @@
 package maman13;
 /**
- * 
+ * This class Represents information about a Matrix
  * @author Eliyahu Mashiah
- *@version 26.11.2018 
+ *@version 11.12.2018
  */
 public class Matrix {
 
 	private int [] [] _matrix;
 	
 	/**
-	 * Constructs a Matrix for a two-dimensional array; the dimensions dimensions as well as the values of this Matrix will be the same as the dimensions and values of the two-dimensional array. 
+	 * Constructs a Matrix for a two-dimensional array the  dimensions as well as the values of this Matrix will be the same as the dimensions and values of the given two-dimensional array. 
 	 * @param array two-dimensional array with a random size and values which will be used to construct the matrix
 	 */
 	public Matrix(int [] [] array)
@@ -65,17 +65,21 @@ public class Matrix {
 		return s;//returns the string representation of the matrix
 	}
 	
+	/**
+	 * returns the matrix fliped horizontally 
+	 * @return a new matrix flipped horizontally 
+	 */
 	public Matrix flipHorizontal()
 	{
-		int [] [] matrix= copyMatrix();
+		int [] [] matrix= copyMatrix();//copies the original matrix
 		int temp;
-        for (int i = 0; i < getColumns(matrix)/2; i++)
+        for (int i = 0; i < getColumns(matrix)/2; i++)//column counter
         {
-            for (int j = 0; j < getRows(matrix); j++)
+            for (int j = 0; j < getRows(matrix); j++)//row counter
             {
-            	temp = matrix[j][i];
-            	matrix[j][i] = matrix[j][getColumns(matrix) - i - 1];
-            	matrix[j][getColumns(matrix) - i - 1] = temp;
+            	temp = matrix[j][i];//saves the original value of the cell 
+            	matrix[j][i] = matrix[j][getColumns(matrix) - i - 1];//puts the value of the cell in the horizontal reflecting cell  
+            	matrix[j][getColumns(matrix) - i - 1] = temp;//sets the value of the reflecting cell to original cell's value
             }
         }
  
@@ -83,18 +87,21 @@ public class Matrix {
 
 	}
 	
-	
+	/**
+	 * returns the matrix fliped vertically 
+	 * @return a new matrix flipped vertically 
+	 */
 	public Matrix flipVertical()
 	{
-		int [] [] matrix= copyMatrix();
+		int [] [] matrix= copyMatrix();//copies the original matrix
 		int temp;
-        for (int i = 0; i < getRows(matrix)/2; i++)
+        for (int i = 0; i < getRows(matrix)/2; i++)//row counter
         {
-            for (int j = 0; j < getColumns(matrix); j++)
+            for (int j = 0; j < getColumns(matrix); j++)//column counter
             {
-            	temp = matrix[i][j];
-            	matrix[i][j] = matrix[getRows(matrix) - i - 1][j];
-            	matrix[getRows(matrix) - i - 1][j] = temp;
+            	temp = matrix[i][j];//saves the original value of the cell 
+            	matrix[i][j] = matrix[getRows(matrix) - i - 1][j];//puts the value of the cell in the vertical reflecting cell
+            	matrix[getRows(matrix) - i - 1][j] = temp;//sets the value of the reflecting cell to original cell's value
             }
         }
  
@@ -102,17 +109,20 @@ public class Matrix {
 
 	}
 	
-	
+	/**
+	 * Rotates the matrix clockwise
+	 * @return a new matrix after being rotated clockwise
+	 */
 	public Matrix rotateClockwise()
 	{
 		
-		int [] [] originalMatrix= copyMatrix();
-		int [] [] clockwiseMatrix= new int [getColumns(originalMatrix)][getRows(originalMatrix)];
-		for (int i = 0; i < getColumns(clockwiseMatrix); i++)
+		int [] [] originalMatrix= copyMatrix();//copies the original matrix
+		int [] [] clockwiseMatrix= new int [getColumns(originalMatrix)][getRows(originalMatrix)];//creates a new array size columns*rows of the original matrix 
+		for (int i = 0; i < getColumns(clockwiseMatrix); i++)//columns counter of the new matrix
 		{
-			for (int j = 0; j <  getRows(clockwiseMatrix); j++)
+			for (int j = 0; j <  getRows(clockwiseMatrix); j++)//rows counter of the new matrix
 			{
-					clockwiseMatrix[j][getColumns(clockwiseMatrix)-1-i]=originalMatrix[i][j];
+					clockwiseMatrix[j][getColumns(clockwiseMatrix)-1-i]=originalMatrix[i][j];////puts the value of the cell in the clockwise index of the rotated clockwise matrix
 			}
 			
 		}
@@ -120,16 +130,20 @@ public class Matrix {
 		return new Matrix(clockwiseMatrix);
 	}
 	
+	/**
+	 * Rotates the matrix counter clockwise
+	 * @return a new matrix after it has been rotated counter clockwise
+	 */
 	public Matrix rotateCounterClockwise()
 	{
 		
-		int [] [] originalMatrix= copyMatrix();
-		int [] [] counterClockwiseMatrix= new int [getColumns(originalMatrix)][getRows(originalMatrix)];
-		for (int i = 0; i < getColumns(counterClockwiseMatrix); i++)
+		int [] [] originalMatrix= copyMatrix();//copies the original matrix
+		int [] [] counterClockwiseMatrix= new int [getColumns(originalMatrix)][getRows(originalMatrix)];//creates a new array size columns*rows of the original matrix 
+		for (int i = 0; i < getColumns(counterClockwiseMatrix); i++)//columns counter of the new matrix
 		{
-			for (int j = 0; j <  getRows(counterClockwiseMatrix); j++)
+			for (int j = 0; j <  getRows(counterClockwiseMatrix); j++)//rows counter of the new matrix
 			{
-					counterClockwiseMatrix[getRows(counterClockwiseMatrix)-1-j][i]=originalMatrix[i][j];
+					counterClockwiseMatrix[getRows(counterClockwiseMatrix)-1-j][i]=originalMatrix[i][j];///puts the value of the cell in the counter clockwise index of the rotated counter clockwise matrix
 			}
 			
 		}
@@ -137,20 +151,20 @@ public class Matrix {
 		return new Matrix(counterClockwiseMatrix);
 	}
 	
-	private int getRows(int [] [] array)
+	private int getRows(int [] [] array)//a method which returns the rows of an array 
 	{
 		int rows=array.length;
 		return rows;
 	}
 	
-	private int getColumns(int [] [] array)
+	private int getColumns(int [] [] array)//a method which returns the columns of an array  
 	{
 		int columns=array[0].length;
 		return columns;
 	}
 	
 	
-	private int [] [] copyMatrix()
+	private int [] [] copyMatrix()//a method which copies _matrix
 	{
 	    int [][] copyMatrix= new int [getRows(_matrix)] [getColumns(_matrix)];
 	    for(int i = 0; i< getRows(_matrix); i++){
